@@ -16,3 +16,29 @@ export const fetchSingleStudent = async (id: any): Promise<StudentInterface> => 
     }
     return student;
 }
+
+export const createStudent = async (data: StudentInterface): Promise<StudentInterface> => {
+    const newStudent = await Student.create(data);
+    if (!newStudent) {
+        throw new Error("Error while creating student");
+    }
+    return newStudent;
+}
+
+export const editStudent = async (id: any, data: StudentInterface): Promise<StudentInterface | null> => {
+    const editedStudent = await Student.findByIdAndUpdate(id, data, { new: true });
+    if (!editedStudent) {
+        throw new Error("Error qhile editing student");
+    }
+
+    return editedStudent;
+}
+
+export const deleteStudent = async (id: any): Promise<StudentInterface | null> => {
+    const student = await Student.findByIdAndDelete(id);
+    if (!student) {
+        throw new Error("Error while deleting student");
+    }
+
+    return student;
+}
