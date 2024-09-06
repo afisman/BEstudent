@@ -4,7 +4,6 @@ import { createStudent, deleteStudent, editStudent, fetchSingleStudent, fetchAll
 export const studentController = express.Router();
 
 studentController.get("/", async (_req: Request, res: Response) => {
-    console.log("en el controller")
     try {
         const students = await fetchAllStudents();
         res.json(students);
